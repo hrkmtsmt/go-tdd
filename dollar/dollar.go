@@ -4,6 +4,8 @@ type Dollar struct {
 	Amount int
 }
 
-func (d *Dollar) Times(multipler int) {
-	d.Amount *= multipler
+func (d *Dollar) Times(multipler int) Dollar {
+	return Dollar{
+		Amount: d.Amount * multipler,
+	}
 }

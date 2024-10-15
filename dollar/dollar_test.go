@@ -9,21 +9,26 @@ import (
  * TODO
  *
  * - [ ] $5 + 10CHF = $10(レートが2:1の場合)
- * - [x] $5 * 2 = $10
  * - [ ] amountをprivateにする
- * - [ ] Dollarの副作用をどうする?
  * - [ ] Moneyの丸め処理をどうする?
+ *
+ * - [x] Dollarの副作用をどうする?
+ * - [x] $5 * 2 = $10
  */
-func TestDollar(t *testing.T) {
-	d := dollar.Dollar{
+func TestMultiplication(t *testing.T) {
+	five := dollar.Dollar{
 		Amount: 5,
 	}
-	d.Times(2)
 
-	actual := d.Amount
-	expect := 10
+	var product dollar.Dollar = five.Times(2)
 
-	if actual != expect {
-		t.Errorf("Actual %v must be expect %v", actual, expect)
+	if product.Amount != 10 {
+		t.Errorf("Actual %v must be 10", product.Amount)
+	}
+
+	product = five.Times(3)
+
+	if product.Amount != 15 {
+		t.Errorf("Actual %v must be 15", product.Amount)
 	}
 }

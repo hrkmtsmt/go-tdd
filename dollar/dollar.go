@@ -9,3 +9,7 @@ func (d *Dollar) Times(multipler int) Dollar {
 		Amount: d.Amount * multipler,
 	}
 }
+
+func (d *Dollar) Equals(dollar Dollar) bool {
+	return d.Amount == dollar.Amount
+}

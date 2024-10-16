@@ -9,7 +9,6 @@ import (
  * TODO
  *
  * - [ ] $5 + 10CHF = $10(レートが2:1の場合)
- * - [ ] amountをprivateにする
  * - [ ] Moneyの丸め処理をどうする?
  * - [ ] hasCode()
  * - [ ] nullとの等価性比較
@@ -18,37 +17,36 @@ import (
  * - [x] Dollarの副作用をどうする?
  * - [x] $5 * 2 = $10
  * - [x] equals()
+ * - [x] amountをprivateにする
  */
 func TestMultiplication(t *testing.T) {
-	five := dollar.Dollar{
-		Amount: 5,
+	five := dollar.NewDollar(5)
+
+	ten := dollar.NewDollar(10)
+
+	if ten != five.Times(2) {
+		t.Errorf("Actual %v must be %v", ten, five.Times(2))
 	}
 
-	var product dollar.Dollar = five.Times(2)
+	fifteen := dollar.NewDollar(15)
 
-	if product.Amount != 10 {
-		t.Errorf("Actual %v must be 10", product.Amount)
-	}
-
-	product = five.Times(3)
-
-	if product.Amount != 15 {
-		t.Errorf("Actual %v must be 15", product.Amount)
+	if fifteen != five.Times(3) {
+		t.Errorf("Actual %v must be %v", fifteen, five.Times(3))
 	}
 }
 
 func TestEquality(t *testing.T) {
-	five := dollar.Dollar{Amount: 5}
+	five := dollar.NewDollar(5)
 
-	var product dollar.Dollar = dollar.Dollar{Amount: 5}
+	var product dollar.Dollar = dollar.NewDollar(5)
 
 	if !five.Equals(product) {
-		t.Errorf("Actual %v must be 5", product.Amount)
+		t.Errorf("Actual %v must be 5", product)
 	}
 
-	product = dollar.Dollar{Amount: 6}
+	product = dollar.NewDollar(6)
 
 	if five.Equals(product) {
-		t.Errorf("Actual %v must be 5", product.Amount)
+		t.Errorf("Actual %v must be 5", product)
 	}
 }

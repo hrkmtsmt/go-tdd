@@ -1,13 +1,16 @@
-package dollar_test
+package money_test
 
 import (
-	"app/dollar"
+	m "app/money"
 	"testing"
 )
 
 /**
  * TODO
  *
+ * - [ ] DollarとFrancの重複
+ * - [ ] equalsの一般化
+ * - [ ] timesの一般化
  * - [ ] $5 + 10CHF = $10(レートが2:1の場合)
  * - [ ] Moneyの丸め処理をどうする?
  * - [ ] hasCode()
@@ -18,17 +21,18 @@ import (
  * - [x] $5 * 2 = $10
  * - [x] equals()
  * - [x] amountをprivateにする
+ * - [x] 5CHF * 2 = 10CHF
  */
 func TestMultiplication(t *testing.T) {
-	five := dollar.NewDollar(5)
+	five := m.NewDollar(5)
 
-	ten := dollar.NewDollar(10)
+	ten := m.NewDollar(10)
 
 	if ten != five.Times(2) {
 		t.Errorf("Actual %v must be %v", ten, five.Times(2))
 	}
 
-	fifteen := dollar.NewDollar(15)
+	fifteen := m.NewDollar(15)
 
 	if fifteen != five.Times(3) {
 		t.Errorf("Actual %v must be %v", fifteen, five.Times(3))
@@ -36,15 +40,15 @@ func TestMultiplication(t *testing.T) {
 }
 
 func TestEquality(t *testing.T) {
-	five := dollar.NewDollar(5)
+	five := m.NewDollar(5)
 
-	var product dollar.Dollar = dollar.NewDollar(5)
+	var product m.Dollar = m.NewDollar(5)
 
 	if !five.Equals(product) {
 		t.Errorf("Actual %v must be 5", product)
 	}
 
-	product = dollar.NewDollar(6)
+	product = m.NewDollar(6)
 
 	if five.Equals(product) {
 		t.Errorf("Actual %v must be 5", product)

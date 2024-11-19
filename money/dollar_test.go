@@ -8,14 +8,16 @@ import (
 /**
  * TODO
  *
- * - [ ] DollarとFrancの重複
  * - [ ] equalsの一般化
+ *
+ * - [ ] DollarとFrancの重複
  * - [ ] timesの一般化
  * - [ ] $5 + 10CHF = $10(レートが2:1の場合)
  * - [ ] Moneyの丸め処理をどうする?
  * - [ ] hasCode()
  * - [ ] nullとの等価性比較
  * - [ ] 他のオブジェクトとの等価性比較
+ * - [ ] FrancとDollarを比較する
  *
  * - [x] Dollarの副作用をどうする?
  * - [x] $5 * 2 = $10
@@ -23,7 +25,7 @@ import (
  * - [x] amountをprivateにする
  * - [x] 5CHF * 2 = 10CHF
  */
-func TestMultiplication(t *testing.T) {
+func TestDollarMultiplication(t *testing.T) {
 	five := m.NewDollar(5)
 
 	ten := m.NewDollar(10)
@@ -39,7 +41,7 @@ func TestMultiplication(t *testing.T) {
 	}
 }
 
-func TestEquality(t *testing.T) {
+func TestDollarEquality(t *testing.T) {
 	five := m.NewDollar(5)
 
 	var product m.Dollar = m.NewDollar(5)

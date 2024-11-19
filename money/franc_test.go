@@ -20,3 +20,19 @@ func TestFrancMultiplation(t *testing.T) {
 		t.Errorf("Actual %v must be %v", fifteen, five.Times(3))
 	}
 }
+
+func TestFrancEquality(t *testing.T) {
+	five := m.NewFranc(5)
+
+	var product m.Franc = m.NewFranc(5)
+
+	if !five.Equals(product) {
+		t.Errorf("Actual %v must be 5", product)
+	}
+
+	product = m.NewFranc(6)
+
+	if five.Equals(product) {
+		t.Errorf("Actual %v must be 5", product)
+	}
+}
